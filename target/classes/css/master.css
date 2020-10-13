@@ -1,0 +1,16 @@
+-- style.css --
+@charset "utf-8";
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 50px;
+}
+
+
+tr.datarow {
+	cursor: pointer;
+}

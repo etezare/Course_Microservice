@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	  layout:decorate="~{layouts/master-layout}">
+<head>
+<title>Available Courses</title>
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<div>
+			<span style="font-size: 1.8em">Course Available</span> <span
+				class="nav-link">
+			<a class="btn btn-outline-primary btn-lg"
+									 href="#"
+									 style="float: right" type="submit">Add a Course</a>
+			</span>
+
+		</div>
+		<div>
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Course Id</th>
+						<th scope="col">Title</th>
+						<th scope="col">Building Number</th>
+						<th scope="col">Room Number</th>
+						<th scope="col">Start Date</th>
+						<th scope="col">End Date</th>
+						<th scope="col" colspan="2"> </th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="course, ctd: ${courses}">
+						<th scope="row" th:text="${ctd.count}"></th>
+						<td th:text="${course.getCourseId()}"></td>
+						<td th:text="${course.getTitle()}"></td>
+						<td th:text="${course.getBuilding()}"></td>
+						<td th:text="${course.getRoom()}"></td>
+						<td th:text="${course.getStart_date()}"></td>
+						<td th:text="${course.getEnd_date()}"></td>
+						<td><a
+							th:href="@{'courses/delete/course/' + ${course.getId()}}"
+							onclick="if(!(confirm('Are you sure you want to delete ')))return false">Delete</a></td>
+					</tr>
+					<tr th:if="${coursesCount < 1}">
+						<td colspan="10" style="text-align: center">Currently No
+							Course is Available</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+			<hr />
+		</div>
+	</div>
+</body>
+</html>
